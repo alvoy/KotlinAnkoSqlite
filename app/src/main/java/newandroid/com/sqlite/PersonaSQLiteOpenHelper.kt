@@ -25,17 +25,17 @@ class PersonaSQLiteOpenHelper(context: Context) : ManagedSQLiteOpenHelper(contex
 
     }
     override fun onCreate(db: SQLiteDatabase) {
-        db.createTable(Persona.NOMBRE_TABLA,true,
-                Persona.ID to INTEGER + PRIMARY_KEY,
-                Persona.NOMBRE to TEXT,
-                Persona.APELLIDO to TEXT,
-                Persona.ID_DEP to INTEGER)
+        db.createTable(PersonaTabla.NOMBRE_TABLA,true,
+                PersonaTabla.ID to INTEGER + PRIMARY_KEY,
+                PersonaTabla.NOMBRE to TEXT,
+                PersonaTabla.APELLIDO to TEXT,
+                PersonaTabla.ID_DEP to INTEGER)
         Log.i("LOGTAG", "Tabla creada personas")
 
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.dropTable(Persona.NOMBRE_TABLA, true)
+        db.dropTable(PersonaTabla.NOMBRE_TABLA, true)
         onCreate(db)
 
     }

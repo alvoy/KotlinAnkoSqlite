@@ -20,40 +20,58 @@ class DataSource(context: Context) {
 
 
 
-
     fun create() {
         dbhelper.use {
-            insert(Persona.NOMBRE_TABLA,
-                        Persona.ID to 1,
-                        Persona.NOMBRE to "Alvaro",
-                        Persona.APELLIDO to "Moya",
-                        Persona.ID_DEP to 1)
+            insert(PersonaTabla.NOMBRE_TABLA,
+                        PersonaTabla.ID to 1,
+                        PersonaTabla.NOMBRE to "Alvaro",
+                        PersonaTabla.APELLIDO to "Moya",
+                        PersonaTabla.ID_DEP to 1)
 
-            insert(Persona.NOMBRE_TABLA,
-                    Persona.ID to 2,
-                    Persona.NOMBRE to "Arturo",
-                    Persona.APELLIDO to "Sanhueza",
-                    Persona.ID_DEP to 2)
+            insert(PersonaTabla.NOMBRE_TABLA,
+                    PersonaTabla.ID to 2,
+                    PersonaTabla.NOMBRE to "Arturo",
+                    PersonaTabla.APELLIDO to "Sanhueza",
+                    PersonaTabla.ID_DEP to 2)
         }
 
         dbhelper2.use {
-            insert(Departamento.NOMBRE_TABLA,
-                    Departamento.ID_DEP to 1,
-                    Departamento.DEPARTAMENTO to "Informática")
+            insert(DepartamentoTabla.NOMBRE_TABLA,
+                    DepartamentoTabla.ID_DEP to 1,
+                    DepartamentoTabla.DEPARTAMENTO to "Informática")
 
-            insert(Departamento.NOMBRE_TABLA,
-                    Departamento.ID_DEP to 2,
-                    Departamento.DEPARTAMENTO to "Comercial")
+            insert(DepartamentoTabla.NOMBRE_TABLA,
+                    DepartamentoTabla.ID_DEP to 2,
+                    DepartamentoTabla.DEPARTAMENTO to "Comercial")
 
         }
 
-    }
-
-    fun create2(departamento: Departamento) {
-
 
 
     }
+
+    fun getPersonas():List<Persona>{
+        return dbhelper.use {
+            select(PersonaTabla.NOMBRE_TABLA).exec {
+                parseList<Persona>(classParser())
+            }
+
+        }
+    }
+
+
+    fun getDepartamentos():List<Departamento>{
+        return dbhelper2.use {
+            select(DepartamentoTabla.NOMBRE_TABLA).exec {
+                parseList<Departamento>(classParser())
+            }
+
+        }
+    }
+
+
+
+
 
    /* fun findAllPersons(): List<Persona> {
         val cursor = sqLiteDatabase.query(PersonasSQLiteOpenHelper.TABLE_PERSONAS, allColumns, null, null, null, null, null)

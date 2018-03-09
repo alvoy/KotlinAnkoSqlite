@@ -26,15 +26,15 @@ class DepartamentoSQLiteOpenHelper(context: Context) : ManagedSQLiteOpenHelper(c
 
     }
     override fun onCreate(db: SQLiteDatabase) {
-        db.createTable(Departamento.NOMBRE_TABLA,true,
-                Departamento.ID_DEP to INTEGER + PRIMARY_KEY,
-                Departamento.DEPARTAMENTO to TEXT)
+        db.createTable(DepartamentoTabla.NOMBRE_TABLA,true,
+                DepartamentoTabla.ID_DEP to INTEGER + PRIMARY_KEY,
+                DepartamentoTabla.DEPARTAMENTO to TEXT)
         Log.i("LOGTAG", "Tabla creada departamento")
 
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.dropTable(Departamento.NOMBRE_TABLA, true)
+        db.dropTable(DepartamentoTabla.NOMBRE_TABLA, true)
         onCreate(db)
 
     }

@@ -47,8 +47,7 @@ import org.jetbrains.anko.db.*
     fun createData() {
         dataSource.create()
         dataSource.getPersonas()
-
-
+        
     }
 
 

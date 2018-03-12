@@ -39,6 +39,7 @@ import org.jetbrains.anko.db.*
 
         join.setOnClickListener {
 
+            dataSource.join()
             //departamentos = dataSource.queryJoin();
         }
 
@@ -47,7 +48,7 @@ import org.jetbrains.anko.db.*
     fun createData() {
         dataSource.create()
         dataSource.getPersonas()
-        
+
     }
 
 

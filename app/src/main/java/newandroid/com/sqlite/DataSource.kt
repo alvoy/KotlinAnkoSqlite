@@ -67,9 +67,28 @@ class DataSource(context: Context) {
             }
 
         }
+
     }
 
 
+    fun join(){
+
+        dbhelper.use {
+            attach()
+        }
+
+
+    }
+
+    fun SQLiteDatabase.attach(){
+        execSQL("attach database ? as personasdb", arrayOf("/data/data/newandroid.com.sqlite/databases/personas.db"))
+        execSQL("attach database ? as deptosdb", arrayOf("/data/data/newandroid.com.sqlite/databases/departamentos.db"))
+        val query = "SELECT DISTINCT departamento FROM deptosdb.departamento INNER JOIN personasdb.persona ON personasdb.persona.id_dep = deptosdb.departamento.id_dep"
+        val cursor = rawQuery(query, null)
+        while (cursor.moveToNext()) {
+            Log.i("cursor", cursor.getString(0))
+        }
+    }
 
 
 

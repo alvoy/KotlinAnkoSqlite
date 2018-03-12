@@ -3,7 +3,6 @@ package newandroid.com.sqlite
 /**
  * Created by Alvaro on 3/7/18.
  */
-import android.support.v7.view.menu.ActionMenuItemView
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
@@ -37,9 +36,7 @@ class MyAdapter (val personas: List<Persona>):
 
          fun bindItems(persona: Persona) {
 
-                itemView.nombre.text = persona.nombre
-                itemView.apellido_persona.text = persona.apellido
-                Log.i("NOMBRE", itemView.nombre.text.toString())
+                itemView.nombre.text = persona.nombre + " " + persona.apellido
 
         }
 
